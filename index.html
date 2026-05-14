@@ -35,6 +35,12 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            word-break: keep-all; /* 한국어 단어 잘림 방지 */
+            overflow-wrap: break-word;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
 
@@ -67,6 +73,9 @@
         .header-nav { display: flex; gap: 10px; align-items: center; }
 
         /* ── BUTTONS ── */
+        .btn, .btn-outline, .btn-gold, .btn-kakao, .btn-kakao-dark {
+            white-space: nowrap; /* 버튼 텍스트 줄바꿈 방지 */
+        }
         .btn {
             background: var(--green); color: var(--cream);
             border: none; padding: 14px 28px;
@@ -417,10 +426,15 @@
 
         /* ── RESPONSIVE & MOBILE APP-LIKE UI ── */
         @media (max-width: 900px) {
-            .container { padding: 0 20px; }
+            .container { padding: 0 16px; }
             header { height: 60px; }
-            .logo { font-size: 18px; }
-            .header-nav .btn-outline { padding: 6px 12px; font-size: 12px; }
+            .logo { font-size: 18px; flex-shrink: 0; }
+            
+            /* 모바일 헤더 버튼 찌그러짐 완벽 해결 */
+            .header-nav { gap: 6px; }
+            .header-nav .btn-outline { padding: 6px 10px; font-size: 11px; letter-spacing: -0.02em; }
+            #headerKakaoBtn { padding: 6px 10px !important; font-size: 11px !important; gap: 4px !important; }
+            #headerKakaoBtn svg { width: 14px !important; height: 14px !important; }
             
             .hero { padding: 90px 0 40px; }
             .hero-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -435,7 +449,9 @@
             .hero-card-mini { display: none; }
             
             .section-tag { margin-bottom: 12px; }
-            h2, .problem h2, .why-left h2, .services h2, .camps h2, .how h2, .pricing-left h2, .section-header-left h2 { font-size: 2.2rem; margin-bottom: 20px; }
+            
+            /* 제목 크기 최적화 */
+            h2, .problem h2, .why-left h2, .services h2, .camps h2, .how h2, .pricing-left h2, .section-header-left h2, .cta-section h2 { font-size: 2rem; margin-bottom: 20px; line-height: 1.3; }
             
             .problem { padding: 80px 0; }
             .problem-grid { grid-template-columns: 1fr; gap: 2px; }
@@ -489,7 +505,7 @@
             .pricing-item { padding: 16px 0; }
             
             .cta-section { padding: 80px 0; text-align: left; }
-            .cta-section h2 { font-size: 2.4rem; }
+            .cta-section h2 { font-size: 2.2rem; }
             .cta-section p { margin: 0 0 32px 0; }
             .cta-buttons { flex-direction: column; width: 100%; gap: 10px; }
             .cta-buttons .btn, .cta-buttons .btn-kakao, .cta-buttons .btn-outline { width: 100%; padding: 16px !important; }
@@ -516,6 +532,11 @@
             
             /* Inputs explicitly set to 16px to prevent iOS zoom */
             textarea, input[type="text"], select { font-size: 16px !important; padding: 14px 16px; }
+        }
+
+        /* ── 초소형 모바일 기기(아이폰 SE 사이즈 등)에서 버튼 넘침 방지 ── */
+        @media (max-width: 380px) {
+            .header-nav > a[href="#services"] { display: none !important; } /* 공간 부족 시 서비스 보기 버튼 숨김 */
         }
     </style>
 </head>
@@ -943,7 +964,7 @@
                 <div style="background:var(--green-pale);padding:24px;border-radius:12px;margin-bottom:28px;border:1px solid var(--border);">
                     <h4 style="color:var(--green);font-size:1rem;margin-bottom:12px;font-weight:700;">🌿 LONDEAR 큐레이터가 되면?</h4>
                     <ul style="font-size:.9rem;color:var(--text-mid);line-height:1.7;padding-left:18px;margin-bottom:14px;">
-                        <li><strong>내 경험이 가치가 됩니다:</strong> 런던에서 아이 키우며 쌓은 노하우로 수익을 창출하세요.</li>
+                        <li><strong>내 경험이 가치가 됩니다:</strong> 런던에서 아이 키 키우며 쌓은 노하우로 수익을 창출하세요.</li>
                         <li><strong>간단한 프로세스:</strong> 내 전문 분야에 문의가 오면 이메일로 바로 알림을 받습니다.</li>
                         <li><strong>퍼스널 브랜딩:</strong> LONDEAR 메인에 현지 큐레이터로 소개됩니다.</li>
                     </ul>
